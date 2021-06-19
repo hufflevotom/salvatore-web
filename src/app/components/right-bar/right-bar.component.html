@@ -1,0 +1,176 @@
+<div class="rightBar">
+    <div class="detalles" id="filaSeleccionada" [style.display]="estadoUsuario">
+        <div class="titulo">
+            <div class="tituloObjeto">
+                <h4>Usuario</h4>
+            </div>
+            <div class="iconTitulo">
+                <svg width="30" height="30" viewBox="0 0 20 20" fill="var(--color-blanco)" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10 0C4.579 0 0 4.579 0 10C0 13.189 1.592 16.078 4 17.924V18H4.102C5.77 19.245 7.813 20 10 20C12.187 20 14.23 19.245 15.898 18H16V17.924C18.408 16.078 20 13.19 20 10C20 4.579 15.421 0 10 0ZM6.074 16.927C6.22136 16.2604 6.59154 15.6639 7.12347 15.236C7.6554 14.808 8.3173 14.5742 9 14.573H11C11.6827 14.5744 12.3445 14.8083 12.8764 15.2362C13.4082 15.6641 13.7785 16.2605 13.926 16.927C12.758 17.604 11.416 18 10 18C8.584 18 7.242 17.604 6.074 16.927ZM15.61 15.641C15.2286 14.7329 14.5877 13.9574 13.7677 13.4117C12.9477 12.866 11.985 12.5742 11 12.573H9C8.01501 12.5742 7.05227 12.866 6.23227 13.4117C5.41227 13.9574 4.77144 14.7329 4.39 15.641C2.923 14.182 2 12.176 2 10C2 5.663 5.663 2 10 2C14.337 2 18 5.663 18 10C18 12.176 17.077 14.182 15.61 15.641Z" />
+                    <path
+                        d="M10 4C7.72 4 6 5.72 6 8C6 10.28 7.72 12 10 12C12.28 12 14 10.28 14 8C14 5.72 12.28 4 10 4ZM10 10C8.822 10 8 9.178 8 8C8 6.822 8.822 6 10 6C11.178 6 12 6.822 12 8C12 9.178 11.178 10 10 10Z" />
+                </svg>
+            </div>
+        </div>
+        <div class="contenidoBarra" [style.display]="valoresUsuario">
+            <div class="keyValores">
+                <h5 class="campo"> DNI </h5>
+                <p class="valor"> {{usuarioService.usuarioSeleccionado.dni}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Nombre </h5>
+                <p class="valor"> {{usuarioService.usuarioSeleccionado.nombre}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Apellidos </h5>
+                <p class="valor"> {{usuarioService.usuarioSeleccionado.apellidos}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Celular </h5>
+                <p class="valor"> {{usuarioService.usuarioSeleccionado.celular}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Rol </h5>
+                <div class="valor">
+                    <div *ngIf="usuarioService.usuarioSeleccionado.idTipoRol==='60bb0f9768bcb70590c9eccc'">Administrador
+                    </div>
+                    <div *ngIf="usuarioService.usuarioSeleccionado.idTipoRol==='60bb0fad68bcb70590c9eccd'">Repartidor
+                    </div>
+                </div>
+            </div>
+            <div class="keyValores">
+                <div *ngIf="usuarioService.usuarioSeleccionado.idTipoRol==='60bb0fad68bcb70590c9eccd'">
+                    <h5 class="campo"> Brevete </h5>
+                    <p class="valor"> {{usuarioService.usuarioSeleccionado.brevete}} </p>
+                </div>
+            </div>
+            <div class="keyValores">
+                <button class="btn-primary" (click)="editarUsuario()">Editar</button>
+                <button class="btn-primary" (click)="quitarUsuario(usuarioService.usuarioSeleccionado._id!)">Eliminar</button>
+            </div>
+        </div>
+        <div class="formularioUsuario" [style.display]="formUsuario">
+            <form #usuarioForm="ngForm" (ngSubmit)="agregarUsuario(usuarioForm)">
+                <input type="hidden" name="_id" [(ngModel)]="usuarioService.usuarioSeleccionado._id">
+                <h5 class="campo">DNI</h5>
+                <input type="text" name="dni" placeholder="DNI" [(ngModel)]="usuarioService.usuarioSeleccionado.dni">
+                <h5 class="campo">Contraseña</h5>
+                <input type="password" name="contrasena" placeholder="Contraseña" [(ngModel)]="usuarioService.usuarioSeleccionado.contrasena">
+                <h5 class="campo">Nombre</h5>
+                <input type="text" name="nombre" placeholder="Nombre" [(ngModel)]="usuarioService.usuarioSeleccionado.nombre">
+                <h5 class="campo">Apellidos</h5>
+                <input type="text" name="apellidos" placeholder="Apellidos" [(ngModel)]="usuarioService.usuarioSeleccionado.apellidos">
+                <h5 class="campo">Celular</h5>
+                <input type="text" name="celular" placeholder="Celular" [(ngModel)]="usuarioService.usuarioSeleccionado.celular">
+                <h5 class="campo">Rol</h5>
+                <select name="idTipoRol" placeholder="Rol" [(ngModel)]="usuarioService.usuarioSeleccionado.idTipoRol">
+                    <option ng-selected="usuarioService.usuarioSeleccionado.idTipoRol === '60bb0f9768bcb70590c9eccc'"
+                        value="60bb0f9768bcb70590c9eccc">Administrador</option>
+                    <option ng-selected="usuarioService.usuarioSeleccionado.idTipoRol === '60bb0fad68bcb70590c9eccd'"
+                        value="60bb0fad68bcb70590c9eccd">Repartidor</option>
+                </select>
+                <div *ngIf="usuarioService.usuarioSeleccionado.idTipoRol==='60bb0fad68bcb70590c9eccd'">
+                    <h5 class="campo">Brevete</h5>
+                    <input type="text" name="brevete" placeholder="Brevete" [(ngModel)]="usuarioService.usuarioSeleccionado.brevete">
+                </div>
+                <button class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <div class="detalles" id="filaSeleccionada" [style.display]="estadoVehiculo">
+        <div class="titulo">
+            <div class="tituloObjeto">
+                <h4>Vehiculo</h4>
+            </div>
+            <div class="iconTitulo">
+                <svg width="30" height="30" viewBox="0 0 21 22" fill="var(--color-blanco)" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20.6011 10.2082L16.0011 6.50822V3.98822C16.0256 3.48316 15.8488 2.989 15.5095 2.61409C15.1702 2.23917 14.6961 2.0141 14.1911 1.98822H2.79108C2.28965 2.01918 1.8206 2.24645 1.48556 2.6208C1.15051 2.99515 0.97645 3.48644 1.00108 3.98822V13.9882C0.991797 14.3853 1.10097 14.7762 1.31469 15.111C1.5284 15.4458 1.83698 15.7094 2.20108 15.8682C2.01691 16.3188 1.94514 16.8074 1.99194 17.2918C2.03875 17.7763 2.20274 18.2421 2.46975 18.6491C2.73676 19.056 3.09878 19.3919 3.52458 19.6277C3.95037 19.8635 4.42715 19.9922 4.91377 20.0026C5.40039 20.0131 5.88224 19.9049 6.31774 19.6876C6.75325 19.4702 7.12933 19.1502 7.41353 18.755C7.69773 18.3599 7.88152 17.9015 7.94904 17.4195C8.01655 16.9375 7.96577 16.4462 7.80108 15.9882H14.1611C13.9966 16.4414 13.9438 16.9274 14.007 17.4053C14.0703 17.8832 14.2477 18.3388 14.5244 18.7336C14.8011 19.1283 15.1688 19.4506 15.5964 19.6731C16.0241 19.8956 16.499 20.0117 16.9811 20.0117C17.4631 20.0117 17.9381 19.8956 18.3657 19.6731C18.7934 19.4506 19.1611 19.1283 19.4378 18.7336C19.7144 18.3388 19.8919 17.8832 19.9551 17.4053C20.0184 16.9274 19.9655 16.4414 19.8011 15.9882H20.0011C20.2663 15.9882 20.5206 15.8829 20.7082 15.6953C20.8957 15.5078 21.0011 15.2534 21.0011 14.9882V10.9882C20.998 10.8364 20.9604 10.6872 20.8911 10.5521C20.8218 10.4169 20.7226 10.2993 20.6011 10.2082ZM19.0011 11.4682V13.9882H16.0011V9.06822L19.0011 11.4682ZM6.00108 16.9882C6.00108 17.186 5.94243 17.3793 5.83255 17.5438C5.72267 17.7082 5.56649 17.8364 5.38376 17.9121C5.20104 17.9878 4.99997 18.0076 4.80599 17.969C4.61201 17.9304 4.43382 17.8352 4.29397 17.6953C4.15412 17.5555 4.05888 17.3773 4.02029 17.1833C3.98171 16.9893 4.00151 16.7883 4.0772 16.6055C4.15289 16.4228 4.28106 16.2666 4.44551 16.1567C4.60996 16.0469 4.8033 15.9882 5.00108 15.9882C5.26629 15.9882 5.52065 16.0936 5.70818 16.2811C5.89572 16.4686 6.00108 16.723 6.00108 16.9882ZM11.0011 13.9882H3.00108V3.98822H14.0011V13.9882H11.0011ZM18.0011 16.9882C18.0011 17.186 17.9424 17.3793 17.8325 17.5438C17.7227 17.7082 17.5665 17.8364 17.3838 17.9121C17.201 17.9878 17 18.0076 16.806 17.969C16.612 17.9304 16.4338 17.8352 16.294 17.6953C16.1541 17.5555 16.0589 17.3773 16.0203 17.1833C15.9817 16.9893 16.0015 16.7883 16.0772 16.6055C16.1529 16.4228 16.2811 16.2666 16.4455 16.1567C16.61 16.0469 16.8033 15.9882 17.0011 15.9882C17.2663 15.9882 17.5206 16.0936 17.7082 16.2811C17.8957 16.4686 18.0011 16.723 18.0011 16.9882Z"
+                        fill="var(--color-blanco)" />
+                </svg>
+
+            </div>
+        </div>
+        <div class="contenidoBarra" [style.display]="valoresVehiculo">
+            <div class="keyValores">
+                <h5 class="campo"> Placa </h5>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.placa}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Marca </h5>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.marca}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Color </h5>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.color}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Modelo </h5>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.modelo}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Fecha de fabricacion </h5>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.fechaFabricacion}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Estado </h5>
+                <div class="valor">
+                    <div *ngIf="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo==='60beee1f030b61001519db51'">En uso
+                    </div>
+                    <div *ngIf="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo==='60beee42030b61001519db52'">Libre
+                    </div>
+                    <div *ngIf="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo==='60beee4c030b61001519db53'">Mantenimiento
+                    </div>
+                </div>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Fecha de vencimiento de SOAT </h5>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.vencimientoSoat}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Fecha de vencimiento de revision técnica </h5>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.vencimientoRevision}} </p>
+            </div>
+            <div class="keyValores">
+                <button class="btn-primary" (click)="editarVehiculo()">Editar</button>
+                <button class="btn-primary" (click)="quitarVehiculo(vehiculoService.vehiculoSeleccionado._id!)">Eliminar</button>
+            </div>
+        </div>
+        <div class="formularioVehiculo" [style.display]="formVehiculo">
+            <form #vehiculoForm="ngForm" (ngSubmit)="agregarVehiculo(vehiculoForm)">
+                <input type="hidden" name="_id" [(ngModel)]="vehiculoService.vehiculoSeleccionado._id">
+                <h5 class="campo">Placa</h5>
+                <input type="text" name="placa" placeholder="Placa" [(ngModel)]="vehiculoService.vehiculoSeleccionado.placa">
+                <h5 class="campo">Marca</h5>
+                <input type="text" name="marca" placeholder="Marca" [(ngModel)]="vehiculoService.vehiculoSeleccionado.marca">
+                <h5 class="campo">Color</h5>
+                <input type="text" name="color" placeholder="Color" [(ngModel)]="vehiculoService.vehiculoSeleccionado.color">
+                <h5 class="campo">Modelo</h5>
+                <input type="text" name="modelo" placeholder="Modelo" [(ngModel)]="vehiculoService.vehiculoSeleccionado.modelo">
+                <h5 class="campo">Fecha de fabricacion</h5>
+                <input type="datetime-local" name="fechaFabricacion" placeholder="Fecha de fabricacion" [(ngModel)]="vehiculoService.vehiculoSeleccionado.fechaFabricacion">
+                <h5 class="campo">Estado</h5>
+                <select name="idEstadoVehiculo" placeholder="Estado" [(ngModel)]="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo">
+                    <option ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee1f030b61001519db51'"
+                        value="60beee1f030b61001519db51">En uso</option>
+                    <option ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee42030b61001519db52'"
+                        value="60beee42030b61001519db52">Libre</option>
+                        <option ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee4c030b61001519db53'"
+                        value="60beee4c030b61001519db53">Mantenimiento</option>
+                </select>
+                <h5 class="campo">Fecha de vencimiento de SOAT</h5>
+                <input type="datetime-local" name="vencimientoSoat" placeholder="Fecha de vencimiento de SOAT" [(ngModel)]="vehiculoService.vehiculoSeleccionado.vencimientoSoat">
+                <h5 class="campo">Fecha de vencimiento de revision técnica</h5>
+                <input type="datetime-local" name="vencimientoRevision" placeholder="Fecha de vencimiento de revision técnica" [(ngModel)]="vehiculoService.vehiculoSeleccionado.vencimientoRevision">
+                <button class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <div class="barra" id="filaVacia" [style.display]="estado">
+        <img class="animacion" src="http://drive.google.com/uc?export=view&id=1tRq9Fml1y6YmbmEt12Mt7ciPLnL_bI_J" alt="Animacion antes de seleccionar">
+        <div class="textoAnimacion">
+            <h4 class="textoSeleccionarAnimacion">Seleccione una fila para continuar</h4>
+        </div>
+    </div>
+</div>

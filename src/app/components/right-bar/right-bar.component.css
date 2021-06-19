@@ -1,0 +1,154 @@
+.rightBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    width: 18%;
+    height: 100%;
+    right: 0px;
+    top: 0px;
+    display: block;
+    background: var(--color-azul-80);
+    overflow: auto;
+}
+
+.detalles {
+    padding-top: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    position: static;
+    width: 100%;
+    height: 50px;
+    left: 40px;
+    top: 40px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.tituloObjeto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 0px;
+    position: static;
+    width: 50%;
+    height: 50px;
+    left: 0px;
+    top: 0px;
+    color: var(--color-blanco)
+}
+
+.iconTitulo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    position: static;
+    width: 50%;
+    height: 40px;
+    left: 95px;
+    top: 5px;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    margin: 0px 0px;
+}
+
+.contenidoBarra {
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px 0px;
+    position: static;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.campo {
+    display: block;
+    align-items: center;
+    letter-spacing: -0.02em;
+    color: var(--color-blanco);
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 5px 0px;
+    word-wrap: break-word;
+}
+
+.valor {
+    display: block;
+    align-items: center;
+    letter-spacing: -0.02em;
+    color: var(--color-blanco);
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 5px 0px;
+    word-wrap: break-word;
+}
+
+.barra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 120px 0px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+}
+
+.animacion {
+    position: static;
+    padding-left: 10px;
+    width: 95%;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.textoAnimacion {
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: static;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0px 0px;
+    word-wrap: break-word;
+}
+
+.textoSeleccionarAnimacion {
+    align-items: center;
+    text-align: center;
+    color: var(--color-blanco);
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-top: 0px;
+    word-wrap: break-word;
+}

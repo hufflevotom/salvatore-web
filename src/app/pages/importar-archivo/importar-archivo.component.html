@@ -1,0 +1,7 @@
+<input type="file" (change)="onFileChange($event)" />
+
+<div id="output"></div>
+<br>
+<div *ngIf="willDownload">
+    <a id="download"> Download JSON File </a>
+</div>

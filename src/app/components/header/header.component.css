@@ -1,0 +1,56 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    position: static;
+    height: 50px;
+    left: 0px;
+    right: 0px;
+    top: 11px;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    position: static;
+    width: 50%;
+    height: 50px;
+    left: 0px;
+    top: 0px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.fecha {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    position: static;
+    width: 50%;
+    height: 23px;
+    left: 440px;
+    top: 13.5px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.salirBoton {
+    cursor: pointer;
+    align-items: center;
+    padding: 10px 20px;
+    left: 20px;
+    top: 30px;
+    background: var(--color-gris-60);
+    margin: 0px 0px;
+    border: none;
+}

@@ -1,0 +1,128 @@
+.leftBar {
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    display: block;
+}
+
+.logo {
+    position: absolute;
+    width: 139.39px;
+    height: 80px;
+    left: calc(50% - 139.39px/2 - 0.3px);
+    top: 20px;
+}
+
+.navegacion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 0px 50px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 125px;
+    bottom: 0px;
+    background: var(--color-naranja-100);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 40px 0px 0px;
+}
+
+.botonImportar {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 30px 20px;
+    left: 0px;
+    top: 0px;
+}
+
+.boton {
+    cursor: pointer;
+    align-items: center;
+    padding: 15px 20px;
+    left: 20px;
+    top: 30px;
+    background: var(--color-blanco);
+    border-radius: 50px;
+    margin: 0px 0px;
+    color: var(--color-naranja-100);
+    border: none;
+}
+
+.menu {
+    padding-left: 20px;
+    position: static;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+}
+
+ul {
+    flex-direction: column;
+    align-items: center;
+    position: static;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+    position: static;
+    width: 100%;
+    height: auto;
+    flex: none;
+    order: 5;
+    align-self: stretch;
+    flex-grow: 0;
+    color: var(--color-blanco);
+    word-wrap: break-word;
+}
+
+svg {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1px 0px;
+    position: static;
+    left: 35px;
+    top: 18.27px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+a {
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    align-items: center;
+    text-align: center;
+    color: var(--color-blanco);
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin-top: 0px;
+    /**/
+    word-wrap: break-word;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    height: auto;
+}
+
+.active {
+    color: var(--color-naranja-60);
+    cursor: default;
+}

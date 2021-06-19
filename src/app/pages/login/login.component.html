@@ -1,0 +1,6 @@
+<h4>Iniciar Sesion</h4>
+<form (ngSubmit)="ingresar(form)" #form="ngForm">
+    <input type="text" name="dni" [(ngModel)]="usuarioService.usuarioSeleccionado.dni" placeholder="D.N.I.">
+    <input type="password" name="contrasena" [(ngModel)]="usuarioService.usuarioSeleccionado.contrasena" placeholder="Contraseña">
+    <button type="submit">Ingresar</button>
+</form>
