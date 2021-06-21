@@ -6,6 +6,7 @@ import { Usuario } from 'src/app/models/Usuario';
 import { Vehiculo } from 'src/app/models/Vehiculo';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
+import { FolioService } from 'src/app/services/folio.service';
 
 @Component({
   selector: 'app-right-bar',
@@ -17,13 +18,16 @@ export class RightBarComponent implements OnInit {
     tipo: '',
     data: {}
   };
-  estadoUsuario: string = 'none';
-  estadoVehiculo: string = 'none';
   estado: string = 'block';
+  estadoUsuario: string = 'none';
   valoresUsuario: string = 'none';
-  valoresVehiculo: string = 'none';
   formUsuario: string = 'none';
+  estadoVehiculo: string = 'none';
+  valoresVehiculo: string = 'none';
   formVehiculo: string = 'none';
+  estadoFolio: string = 'none';
+  valoresFolio: string = 'none';
+  formFolio: string = 'none';
   @Input() usuario?: Usuario;
   @Input() vehiculo?: Vehiculo;
   @Input() folio?: Folio;
@@ -32,6 +36,7 @@ export class RightBarComponent implements OnInit {
   constructor(
     public usuarioService: UsuarioService,
     public vehiculoService: VehiculoService,
+    public folioService: FolioService,
     private router: Router
   ) {
     this.dniStorage = localStorage.getItem('dni') || '';
@@ -48,6 +53,9 @@ export class RightBarComponent implements OnInit {
         this.formUsuario = 'none';
         this.valoresVehiculo = 'block';
         this.formVehiculo = 'none';
+        this.estadoFolio = 'none';
+        this.valoresFolio = 'none';
+        this.formFolio = 'none';
         console.log(this.data);
       } else {
         this.estadoUsuario = 'none';
@@ -57,6 +65,9 @@ export class RightBarComponent implements OnInit {
         this.formUsuario = 'none';
         this.valoresVehiculo = 'none';
         this.formVehiculo = 'block';
+        this.estadoFolio = 'none';
+        this.valoresFolio = 'none';
+        this.formFolio = 'none';
       }
     })
     this.usuarioService.user.subscribe(usuario => {
@@ -69,6 +80,9 @@ export class RightBarComponent implements OnInit {
         this.formUsuario = 'none';
         this.valoresVehiculo = 'none';
         this.formVehiculo = 'none';
+        this.estadoFolio = 'none';
+        this.valoresFolio = 'none';
+        this.formFolio = 'none';
         console.log(this.data);
       } else {
         this.estadoUsuario = 'block';
@@ -78,6 +92,36 @@ export class RightBarComponent implements OnInit {
         this.formUsuario = 'block';
         this.valoresVehiculo = 'none';
         this.formVehiculo = 'none';
+        this.estadoFolio = 'none';
+        this.valoresFolio = 'none';
+        this.formFolio = 'none';
+      }
+    })
+    this.folioService.package.subscribe(folio => {
+      if (folio === this.folioService.folioSeleccionado) {
+        this.data = folio;
+        this.estadoUsuario = 'none';
+        this.estadoVehiculo = 'none';
+        this.estado = 'none';
+        this.valoresUsuario = 'none';
+        this.formUsuario = 'none';
+        this.valoresVehiculo = 'none';
+        this.formVehiculo = 'none';
+        this.estadoFolio = 'block';
+        this.valoresFolio = 'block';
+        this.formFolio = 'none';
+        console.log(this.data,'asdgas');
+      } else {
+        this.estadoUsuario = 'none';
+        this.estadoVehiculo = 'none';
+        this.estado = 'none';
+        this.valoresUsuario = 'none';
+        this.formUsuario = 'none';
+        this.valoresVehiculo = 'none';
+        this.formVehiculo = 'none';
+        this.estadoFolio = 'block';
+        this.valoresFolio = 'none';
+        this.formFolio = 'block';
       }
     })
   }
@@ -87,6 +131,8 @@ export class RightBarComponent implements OnInit {
     this.formUsuario = 'none';
     this.valoresVehiculo = 'none';
     this.formVehiculo = 'block';
+    this.valoresFolio = 'none';
+    this.formFolio = 'none';
   }
 
   editarUsuario() {
@@ -94,6 +140,16 @@ export class RightBarComponent implements OnInit {
     this.formUsuario = 'block';
     this.valoresVehiculo = 'none';
     this.formVehiculo = 'none';
+    this.valoresFolio = 'none';
+    this.formFolio = 'none';
+  }
+  editarFolio() {
+    this.valoresUsuario = 'none';
+    this.formUsuario = 'none';
+    this.valoresVehiculo = 'none';
+    this.formVehiculo = 'none';
+    this.valoresFolio = 'none';
+    this.formFolio = 'block';
   }
 
   obtenerVehiculos() {
@@ -114,6 +170,18 @@ export class RightBarComponent implements OnInit {
         this.usuarioService.usuarios = res;
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/usuarios']);
+        });
+      },
+      err => console.log(err)
+    )
+  }
+
+  obtenerFolios() {
+    this.folioService.obtenerFolios().subscribe(
+      res => {
+        this.folioService.folios = res;
+        this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/folios']);
         });
       },
       err => console.log(err)
@@ -167,6 +235,29 @@ export class RightBarComponent implements OnInit {
     this.estadoVacio();
   }
 
+  agregarFolio(form: NgForm) {
+    if (form.value._id) {
+      this.folioService.actualizarFolio(form.value).subscribe(
+        res => {
+          console.log(res)
+          form.reset();
+          this.obtenerFolios();
+        },
+        err => console.log(err)
+      )
+    } else {
+      this.folioService.crearFolio(form.value).subscribe(
+        res => {
+          this.obtenerFolios();
+          form.reset();
+          console.log(res)
+        },
+        err => console.log(err)
+      )
+    }
+    this.estadoVacio();
+  }
+
   quitarVehiculo(id: string) {
     if (confirm('¿Está seguro?')) {
       this.vehiculoService.borrarVehiculo(id).subscribe(
@@ -197,6 +288,21 @@ export class RightBarComponent implements OnInit {
     }
   }
 
+  quitarFolio(id: string) {
+    if (confirm('¿Está seguro?')) {
+      this.folioService.borrarFolio(id).subscribe(
+        res => {
+          this.obtenerFolios();
+          console.log(res)
+          this.estadoVacio();
+        },
+        err => console.log(err)
+      )
+    } else {
+      console.log(false)
+    }
+  }
+
   estadoVacio() {
     this.estadoUsuario = 'none';
     this.estadoVehiculo = 'none';
@@ -205,6 +311,9 @@ export class RightBarComponent implements OnInit {
     this.formUsuario = 'none';
     this.valoresVehiculo = 'none';
     this.formVehiculo = 'none';
+    this.estadoFolio = 'none';
+    this.valoresFolio = 'none';
+    this.formFolio = 'none';
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FolioService } from 'src/app/services/folio.service';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -9,29 +10,37 @@ import * as XLSX from 'xlsx';
 export class ImportarArchivoComponent implements OnInit {
   willDownload = false;
 
-  constructor() { }
+  constructor(public folioService: FolioService) { }
 
   ngOnInit(): void {
   }
 
-    onFileChange(ev:any): void {
-      let workBook: XLSX.WorkBook;
-      let jsonData;
-      const reader = new FileReader();
-      const file = ev.target.files[0];
-      reader.onload = (event) => {
-        const data = reader.result;
-        workBook = XLSX.read(data, { type: 'binary' });
-        console.log(workBook.SheetNames)
-        jsonData = workBook.SheetNames.reduce((initial, name:any) => {
-          console.log(initial)
-           const sheet = workBook.Sheets[name];
-          initial = {'name': XLSX.utils.sheet_to_json(sheet)}
-           return initial;
-        }, {});        
-        const dataString = JSON.stringify(jsonData);
-        console.log(dataString)
-      }      
-      reader.readAsBinaryString(file);
+  onFileChange(ev: any): void {
+    let workBook: XLSX.WorkBook;
+    let jsonData;
+    const reader = new FileReader();
+    const file = ev.target.files[0];
+    reader.onload = (event) => {
+      const data = reader.result;
+      workBook = XLSX.read(data, { type: 'binary' });
+      jsonData = workBook.SheetNames.reduce((initial, name: any) => {
+        const sheet = workBook.Sheets[name];
+        initial = { 'name': XLSX.utils.sheet_to_json(sheet) }
+        return initial;
+      }, {});
+      const dataString = JSON.stringify(jsonData);
+      console.log(dataString)
+      this.cargarFolios(dataString)
     }
+    reader.readAsBinaryString(file);
+  }
+
+  cargarFolios(dataString: string) {
+    this.folioService.cargarFolios(dataString).subscribe(
+      res => {
+        console.log(res)
+      },
+      err => console.log(err)
+    )
+  }
 }

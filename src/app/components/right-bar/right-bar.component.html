@@ -111,26 +111,30 @@
             </div>
             <div class="keyValores">
                 <h5 class="campo"> Fecha de fabricacion </h5>
-                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.fechaFabricacion}} </p>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.fechaFabricacion!.toString().split("T",1)}}
+                </p>
             </div>
             <div class="keyValores">
                 <h5 class="campo"> Estado </h5>
                 <div class="valor">
                     <div *ngIf="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo==='60beee1f030b61001519db51'">En uso
                     </div>
-                    <div *ngIf="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo==='60beee42030b61001519db52'">Libre
+                    <div *ngIf="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo==='60beee42030b61001519db52'">
+                        Libre
                     </div>
-                    <div *ngIf="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo==='60beee4c030b61001519db53'">Mantenimiento
+                    <div *ngIf="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo==='60beee4c030b61001519db53'">
+                        Mantenimiento
                     </div>
                 </div>
             </div>
             <div class="keyValores">
                 <h5 class="campo"> Fecha de vencimiento de SOAT </h5>
-                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.vencimientoSoat}} </p>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.vencimientoSoat!.toString().split("T",1)}} </p>
             </div>
             <div class="keyValores">
                 <h5 class="campo"> Fecha de vencimiento de revision técnica </h5>
-                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.vencimientoRevision}} </p>
+                <p class="valor"> {{vehiculoService.vehiculoSeleccionado.vencimientoRevision!.toString().split("T",1)}}
+                </p>
             </div>
             <div class="keyValores">
                 <button class="btn-primary" (click)="editarVehiculo()">Editar</button>
@@ -152,17 +156,79 @@
                 <input type="datetime-local" name="fechaFabricacion" placeholder="Fecha de fabricacion" [(ngModel)]="vehiculoService.vehiculoSeleccionado.fechaFabricacion">
                 <h5 class="campo">Estado</h5>
                 <select name="idEstadoVehiculo" placeholder="Estado" [(ngModel)]="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo">
-                    <option ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee1f030b61001519db51'"
+                    <option
+                        ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee1f030b61001519db51'"
                         value="60beee1f030b61001519db51">En uso</option>
-                    <option ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee42030b61001519db52'"
+                    <option
+                        ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee42030b61001519db52'"
                         value="60beee42030b61001519db52">Libre</option>
-                        <option ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee4c030b61001519db53'"
+                    <option
+                        ng-selected="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo === '60beee4c030b61001519db53'"
                         value="60beee4c030b61001519db53">Mantenimiento</option>
                 </select>
                 <h5 class="campo">Fecha de vencimiento de SOAT</h5>
                 <input type="datetime-local" name="vencimientoSoat" placeholder="Fecha de vencimiento de SOAT" [(ngModel)]="vehiculoService.vehiculoSeleccionado.vencimientoSoat">
                 <h5 class="campo">Fecha de vencimiento de revision técnica</h5>
                 <input type="datetime-local" name="vencimientoRevision" placeholder="Fecha de vencimiento de revision técnica" [(ngModel)]="vehiculoService.vehiculoSeleccionado.vencimientoRevision">
+                <button class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <div class="detalles" id="filaSeleccionada" [style.display]="estadoFolio">
+        <div class="titulo">
+            <div class="tituloObjeto">
+                <h4>Folio</h4>
+            </div>
+            <div class="iconTitulo">
+                <svg width="30" height="30" viewBox="0 0 20 20" fill="var(--color-blanco)" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M11.1193 0.301104C10.7792 0.103874 10.3931 0 9.99997 0C9.60686 0 9.22073 0.103874 8.88067 0.301104L2.18782 4.18296C1.84968 4.37908 1.569 4.66061 1.3739 4.99935C1.1788 5.33809 1.07613 5.72214 1.07617 6.11305V13.887C1.07617 14.6824 1.49941 15.4167 2.18782 15.817L8.88067 19.6989C9.22073 19.8961 9.60686 20 9.99997 20C10.3931 20 10.7792 19.8961 11.1193 19.6989L17.8121 15.817C18.5005 15.418 18.9238 14.6824 18.9238 13.887V6.11305C18.9238 5.31755 18.5005 4.58325 17.8121 4.18296L11.1193 0.301104ZM9.84062 1.95583C9.88907 1.92786 9.94403 1.91313 9.99997 1.91313C10.0559 1.91313 10.1109 1.92786 10.1593 1.95583L16.0618 5.37875L9.99997 8.89472L3.93816 5.37875L9.84062 1.95583ZM2.98841 7.03857V13.887C2.98841 14.0017 3.04833 14.1049 3.14777 14.1623L9.04385 17.5827V10.5507L2.98841 7.03857ZM10.9561 17.5827L16.8522 14.1623C16.9005 14.1344 16.9407 14.0943 16.9687 14.0459C16.9966 13.9976 17.0114 13.9428 17.0115 13.887V7.03857L10.9561 10.5507V17.5827Z"
+                        fill="var(--color-blanco)" />
+                </svg>
+            </div>
+        </div>
+        <div class="contenidoBarra" [style.display]="valoresFolio">
+            <div class="keyValores">
+                <h5 class="campo"> Placa </h5>
+                <p class="valor"> {{folioService.folioSeleccionado.numeroFolio}} </p>
+            </div>
+            <div class="keyValores">
+                <h5 class="campo"> Fecha de fabricacion </h5>
+                <p class="valor"> {{folioService.folioSeleccionado.idDetalleEntrega!.fechaEntrega!.toString().split("T",1)}} </p>
+            </div>
+            <!-- <div class="keyValores">
+                <h5 class="campo"> Estado </h5>
+                <div class="valor">
+                    <div *ngIf="folioService.folioSeleccionado.idEstadoFolio==='60beee1f030b61001519db51'">En uso
+                    </div>
+                    <div *ngIf="folioService.folioSeleccionado.idEstadoFolio==='60beee42030b61001519db52'">Libre
+                    </div>
+                    <div *ngIf="folioService.folioSeleccionado.idEstadoFolio==='60beee4c030b61001519db53'">Mantenimiento
+                    </div>
+                </div>
+            </div> -->
+            <div class="keyValores">
+                <button class="btn-primary">Evidencias</button>
+                <button class="btn-primary" (click)="editarFolio()">Editar</button>
+                <button class="btn-primary" (click)="quitarFolio(folioService.folioSeleccionado._id!)">Eliminar</button>
+            </div>
+        </div>
+        <div class="formularioFolio" [style.display]="formFolio">
+            <form #vehiculoForm="ngForm" (ngSubmit)="agregarFolio(vehiculoForm)">
+                <input type="hidden" name="_id" [(ngModel)]="folioService.folioSeleccionado._id">
+                <h5 class="campo">numeroFolio</h5>
+                <input type="text" name="placa" placeholder="numeroFolio" [(ngModel)]="folioService.folioSeleccionado.numeroFolio">
+                <h5 class="campo">fechaEntrega</h5>
+                <input type="datetime-local" name="fechaFabricacion" placeholder="fechaEntrega" [(ngModel)]="folioService.folioSeleccionado.idDetalleEntrega!.fechaEntrega">
+                <!-- <h5 class="campo">Estado</h5>
+                <select name="idEstadoFolio" placeholder="Estado" [(ngModel)]="folioService.folioSeleccionado.idEstadoFolio">
+                    <option ng-selected="folioService.folioSeleccionado.idEstadoFolio === '60beee1f030b61001519db51'"
+                        value="60beee1f030b61001519db51">En uso</option>
+                    <option ng-selected="folioService.folioSeleccionado.idEstadoFolio === '60beee42030b61001519db52'"
+                        value="60beee42030b61001519db52">Libre</option>
+                    <option ng-selected="folioService.folioSeleccionado.idEstadoFolio === '60beee4c030b61001519db53'"
+                        value="60beee4c030b61001519db53">Mantenimiento</option>
+                </select> -->
                 <button class="btn-primary">Guardar</button>
             </form>
         </div>

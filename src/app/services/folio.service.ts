@@ -13,38 +13,59 @@ export class FolioService {
     _id: '',
     numeroFolio: '',
     ruta: '',
-    nombre: '',
-    dni: '',
-    telefono: '',
-    direccion: '',
-    fechaEntrega: new Date(),
-    latitud: '',
-    longitud: '',
-    distrito: '',
-    ordenEntrega: 0,
-    inicioVisita: 0,
-    finVisita: 0,
-    descripcionPedido: '',
-    localAbastecimiento: '',
+    idDetalleCliente: {
+      _id: '',
+      nombre: '',
+      dni: '',
+      telefono: '',
+      direccion: ''
+    },
+    idDetalleEntrega: {
+      _id: '',
+      fechaEntrega: '',
+      idUbicacionEntrega: {
+        _id: '',
+        latitud: '',
+        longitud: '',
+        distrito: ''
+      },
+      ordenEntrega: 0,
+      idHorarioVisita: {
+        _id: '',
+        inicioVisita: 0,
+        finVisita: 0
+      }
+    },
+    idDetallePedido:{
+      _id: '',
+      descripcionPedido: ''
+    },
+    idLocalAbastecimiento:{
+      _id: '',
+      localAbastecimiento: ''
+    },
     createdAt: '',
     updatedAt: ''
   };
   folios!: Folio[];
   constructor(private http: HttpClient) { }
-  
-  obtenerFolios(){
+
+  obtenerFolios() {
     return this.http.get<Folio[]>(this.URL_API + this.modelo)
   }
 
-  crearFolio(folio: Folio){
-    return this.http.post(this.URL_API + this.modelo,folio)
+  crearFolio(folio: Folio) {
+    return this.http.post(this.URL_API + this.modelo, folio)
   }
 
-  actualizarFolio(folio: Folio){
-    return this.http.put(`${this.URL_API}${this.modelo}/${folio._id}`,folio)
+  actualizarFolio(folio: Folio) {
+    return this.http.put(`${this.URL_API}${this.modelo}/${folio._id}`, folio)
   }
 
-  borrarFolio(_id: String){
+  borrarFolio(_id: String) {
     return this.http.delete(`${this.URL_API}${this.modelo}/${_id}`)
+  }
+  cargarFolios(dataString:string){
+    return this.http.post(this.URL_API + this.modelo +'/cargarFolios', JSON.parse(dataString))
   }
 }

@@ -10,10 +10,10 @@ import { Folio } from 'src/app/models/Folio';
   templateUrl: './folios.component.html',
   styleUrls: ['./folios.component.css']
 })
-export class FoliosComponent implements OnInit, AfterViewInit{
+export class FoliosComponent implements OnInit, AfterViewInit {
   title: string = 'Folios';
   folio = this.folioService.folioSeleccionado;
-  displayedColumns: string[] = ['numeroFolio','dni','telefono','direccion','fechaEntrega','descripcionPedido'];
+  displayedColumns: string[] = ['numeroFolio', 'idDetalleCliente.dni', 'idDetalleCliente.telefono', 'idDetalleCliente.direccion', 'idDetalleEntrega.fechaEntrega', 'idDetallePedido.descripcionPedido'];
   dataSource: MatTableDataSource<Folio>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -49,7 +49,44 @@ export class FoliosComponent implements OnInit, AfterViewInit{
   }
 
   nuevoFolio() {
-    this.folioService.folioSeleccionado = {};
+    this.folioService.folioSeleccionado = {
+      _id: '',
+      numeroFolio: '',
+      ruta: '',
+      idDetalleCliente: {
+        _id: '',
+        nombre: '',
+        dni: '',
+        telefono: '',
+        direccion: ''
+      },
+      idDetalleEntrega: {
+        _id: '',
+        fechaEntrega: '',
+        idUbicacionEntrega: {
+          _id: '',
+          latitud: '',
+          longitud: '',
+          distrito: ''
+        },
+        ordenEntrega: 0,
+        idHorarioVisita: {
+          _id: '',
+          inicioVisita: 0,
+          finVisita: 0
+        }
+      },
+      idDetallePedido: {
+        _id: '',
+        descripcionPedido: ''
+      },
+      idLocalAbastecimiento: {
+        _id: '',
+        localAbastecimiento: ''
+      },
+      createdAt: '',
+      updatedAt: ''
+    };
     this.folioService.package.emit({});
   }
 

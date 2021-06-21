@@ -2,10 +2,15 @@
 <div class="contenidoPagina">
     <app-header [page]="title"></app-header>
     <div class="tarjeta mat-elevation-z8">
-        Filtro:
-        <mat-form-field>
-            <input class="filtro" matInput (keyup)="applyFilter($event)" placeholder=" ">
-        </mat-form-field>
+        <div class="header-tarjeta">
+            <h5>Detalle de Vehiculos</h5>
+            <div class="filtro-tarjeta">
+                <h5 style="padding-right: 5px;">Filtro: </h5>
+                <mat-form-field>
+                    <input class="filtro" matInput (keyup)="applyFilter($event)" placeholder=" ">
+                </mat-form-field>
+            </div>
+        </div>
         <table mat-table [dataSource]="dataSource" matSort>
             <!-- Placa Column -->
             <ng-container matColumnDef="placa">
@@ -25,12 +30,12 @@
             <!-- VencimientoSoat Column -->
             <ng-container matColumnDef="vencimientoSoat">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> SOAT </th>
-                <td mat-cell *matCellDef="let element"> {{element.vencimientoSoat}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.vencimientoSoat.split('T',1)}} </td>
             </ng-container>
             <!-- VencimientoRevision Column -->
             <ng-container matColumnDef="vencimientoRevision">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Revision técnica </th>
-                <td mat-cell *matCellDef="let element"> {{element.vencimientoRevision}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.vencimientoRevision.split('T',1)}} </td>
             </ng-container>
             <!-- Estado Column -->
             <ng-container matColumnDef="idEstadoVehiculo">

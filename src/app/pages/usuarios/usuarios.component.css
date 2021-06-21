@@ -5,9 +5,53 @@
 }
 
 .mat-row:hover .mat-cell {
-    border-color: currentColor;
+    border-color: var(--color-azul-60);
+    background: var(--color-azul-60);
 }
 
 .demo-row-is-clicked {
     font-weight: bold;
+}
+
+.mat-header-cell {
+    font-family: Quicksand;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-negro-100)
+}
+
+.header-tarjeta {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.filtro-tarjeta {
+    display: flex;
+    flex-direction: row;
+    order: 10;
+    width: auto;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+    padding-left: 0;
+}
+
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+    padding-right: 0;
+}
+
+mat-row,
+mat-header-row,
+mat-footer-row,
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+    border-bottom-color: var(--color-azul-100);
+    border-bottom-width: 3px;
 }
