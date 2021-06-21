@@ -10,6 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  mensajeRespuesta: string = '';
 
   constructor(public usuarioService: UsuarioService, private router: Router) { }
 
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
           console.log(dniStorage);
         }
       } else if (res['type'] === 'error') {
-
+        console.log(res)
+        this.mensajeRespuesta = res
       }
     })
   }

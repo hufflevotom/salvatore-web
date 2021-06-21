@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Folio } from 'src/app/models/Folio';
 import { Usuario } from 'src/app/models/Usuario';
 import { Vehiculo } from 'src/app/models/Vehiculo';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -25,6 +26,7 @@ export class RightBarComponent implements OnInit {
   formVehiculo: string = 'none';
   @Input() usuario?: Usuario;
   @Input() vehiculo?: Vehiculo;
+  @Input() folio?: Folio;
   data?: Object = {};
   dniStorage: string;
   constructor(

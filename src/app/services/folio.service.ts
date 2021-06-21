@@ -8,7 +8,7 @@ import { Folio } from '../models/Folio';
 export class FolioService {
   URL_API = 'https://salvatore-backend.herokuapp.com/v1'
   modelo = '/folio'
-  user = new EventEmitter<Folio>();
+  package = new EventEmitter<Folio>();
   folioSeleccionado: Folio = {
     _id: '',
     numeroFolio: '',

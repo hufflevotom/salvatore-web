@@ -1,6 +1,19 @@
-<h4>Iniciar Sesion</h4>
-<form (ngSubmit)="ingresar(form)" #form="ngForm">
-    <input type="text" name="dni" [(ngModel)]="usuarioService.usuarioSeleccionado.dni" placeholder="D.N.I.">
-    <input type="password" name="contrasena" [(ngModel)]="usuarioService.usuarioSeleccionado.contrasena" placeholder="Contraseña">
-    <button type="submit">Ingresar</button>
-</form>
+<div class="login">
+    <div class="logo">
+        <img src="http://drive.google.com/uc?export=view&id=12CcnkXzSyRGiL7Z0-l4tGot-IWNCMMid" alt="Logo Operador Logistico CJ EIRL">
+    </div>
+    <div class="tarjeta">
+        <div class="col-2">
+            <form (ngSubmit)="ingresar(form)" #form="ngForm">
+                <h4 style="align-self: center;text-align: center;">Iniciar Sesion</h4>
+                <input type="text" name="dni" [(ngModel)]="usuarioService.usuarioSeleccionado.dni" placeholder="D.N.I.">
+                <input type="password" name="contrasena" [(ngModel)]="usuarioService.usuarioSeleccionado.contrasena" placeholder="Contraseña">
+                <button type="submit" class="btn-secondary">Ingresar</button>
+            </form>
+        </div>
+        <div class="col-2">
+            <img class="animacion" src="http://drive.google.com/uc?export=view&id=1xVClGDxTnkCk4CkYTPWlkYoSDCMNyjnv" alt="Animacion antes de seleccionar">
+        </div>
+    </div>
+</div>
+{{ mensajeRespuesta }}

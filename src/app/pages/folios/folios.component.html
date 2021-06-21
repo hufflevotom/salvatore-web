@@ -1,8 +1,58 @@
 <app-left-bar></app-left-bar>
 <div class="contenidoPagina">
     <app-header [page]="title"></app-header>
-    <div class="tarjeta">
-        <p>folios works!</p>
+    <div class="tarjeta mat-elevation-z8">
+        Filtro:
+        <mat-form-field>
+            <input class="filtro" matInput (keyup)="applyFilter($event)" placeholder=" ">
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" matSort>
+            <!-- Placa Column -->
+            <ng-container matColumnDef="numeroFolio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> numeroFolio </th>
+                <td mat-cell *matCellDef="let element"> {{element.numeroFolio}} </td>
+            </ng-container>
+            <!-- Marca Column -->
+            <ng-container matColumnDef="dni">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> dni </th>
+                <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+            </ng-container>
+            <!-- Color Column -->
+            <ng-container matColumnDef="telefono">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> telefono </th>
+                <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+            </ng-container>
+            <!-- VencimientoSoat Column -->
+            <ng-container matColumnDef="direccion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> direccion </th>
+                <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+            </ng-container>
+            <!-- VencimientoRevision Column -->
+            <ng-container matColumnDef="fechaEntrega">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> fechaEntrega </th>
+                <td mat-cell *matCellDef="let element"> {{element.fechaEntrega}} </td>
+            </ng-container>
+            <!-- VencimientoRevision Column -->
+            <ng-container matColumnDef="descripcionPedido">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> descripcionPedido </th>
+                <td mat-cell *matCellDef="let element"> {{element.descripcionPedido}} </td>
+            </ng-container>
+            <!-- Estado Column -->
+            <!-- <ng-container matColumnDef="idEstadoFolio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                <td mat-cell *matCellDsef="let element">
+                    <div *ngIf="element.idEstadoFolio==='60beee1f030b61001519db51'">En uso</div>
+                    <div *ngIf="element.idEstadoFolio==='60beee42030b61001519db52'">Libre</div>
+                    <div *ngIf="element.idEstadoFolio==='60beee4c030b61001519db53'">Mantenimiento</div>
+                </td>
+            </ng-container> -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editarFolio(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
     </div>
+    <button class="btn-agregar" (click)="nuevoFolio()">
+        <span class="iconify" data-icon="codicon:add" data-inline="false"></span>
+    </button>
 </div>
-<app-right-bar [objeto]="objeto"></app-right-bar>
+<app-right-bar [folio]="folio"></app-right-bar>
