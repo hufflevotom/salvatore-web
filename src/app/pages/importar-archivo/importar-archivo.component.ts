@@ -15,7 +15,7 @@ export class ImportarArchivoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onFileChange(ev: any): void {
+  onFileCharge(ev: any): void {
     let workBook: XLSX.WorkBook;
     let jsonData;
     const reader = new FileReader();
@@ -29,18 +29,15 @@ export class ImportarArchivoComponent implements OnInit {
         return initial;
       }, {});
       const dataString = JSON.stringify(jsonData);
-      console.log(dataString)
-      this.cargarFolios(dataString)
+      console.log(dataString);
+      this.folioService.cargarFolios(dataString).subscribe(
+        res => {
+          console.log(res)
+        },
+        err => console.log(err)
+      )
     }
     reader.readAsBinaryString(file);
   }
-
-  cargarFolios(dataString: string) {
-    this.folioService.cargarFolios(dataString).subscribe(
-      res => {
-        console.log(res)
-      },
-      err => console.log(err)
-    )
-  }
+  /* this.cargarFolios(dataString) */
 }

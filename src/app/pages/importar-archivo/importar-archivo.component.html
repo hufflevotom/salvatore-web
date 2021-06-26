@@ -1,7 +1,4 @@
-<input type="file" (change)="onFileChange($event)" />
-
-<div id="output"></div>
-<br>
-<div *ngIf="willDownload">
-    <a id="download"> Download JSON File </a>
-</div>
+<form #form="ngForm">
+    <input type="file" ngModel (change)="onFileCharge($event)" />
+    <button type="submit">Cargar</button>
+</form>
