@@ -39,5 +39,4 @@ export class ImportarArchivoComponent implements OnInit {
     }
     reader.readAsBinaryString(file);
   }
-  /* this.cargarFolios(dataString) */
 }
