@@ -1,4 +1,4 @@
-<form #form="ngForm">
-    <input type="file" (change)="onFileCharge($event)" />
-    <button type="submit">Cargar</button>
+<form #form="ngForm" (submit)="importarArchivo()">
+    <input type="file" name="archivo" (change)="onFileCharge($event)" [(ngModel)]="archivo" />
+    <button type="submit" [disabled]="!archivo">Cargar</button>
 </form>

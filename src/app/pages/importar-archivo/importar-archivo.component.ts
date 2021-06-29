@@ -8,9 +8,11 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./importar-archivo.component.css']
 })
 export class ImportarArchivoComponent implements OnInit {
-  willDownload = false;
+  public archivo : File | null = null;
+  public dataString: string = "";
 
-  constructor(public folioService: FolioService) { }
+  constructor(public folioService: FolioService) {
+  }
 
   ngOnInit(): void {
   }
@@ -28,15 +30,17 @@ export class ImportarArchivoComponent implements OnInit {
         initial = { 'name': XLSX.utils.sheet_to_json(sheet) }
         return initial;
       }, {});
-      const dataString = JSON.stringify(jsonData);
-      console.log(dataString);
-      this.folioService.cargarFolios(dataString).subscribe(
-        res => {
-          console.log(res)
-        },
-        err => console.log(err)
-      )
+      this.dataString = JSON.stringify(jsonData);
     }
     reader.readAsBinaryString(file);
+  }
+
+  importarArchivo() {
+    this.folioService.cargarFolios(this.dataString).subscribe(
+      res => {
+        console.log(res)
+      },
+      err => console.log(err)
+    )
   }
 }
