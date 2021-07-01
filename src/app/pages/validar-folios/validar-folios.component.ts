@@ -30,7 +30,7 @@ export class ValidarFoliosComponent implements OnInit {
   }
 
   obtenerFolios() {
-    this.folioService.obtenerFolios().subscribe(
+    this.folioService.obtenerFoliosActuales().subscribe(
       res => {
         this.folioService.folios = res;
         this.dataSource = new MatTableDataSource<Folio>(this.folioService.folios);

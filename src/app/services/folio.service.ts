@@ -36,11 +36,11 @@ export class FolioService {
         finVisita: 0
       }
     },
-    idDetallePedido:{
+    idDetallePedido: {
       _id: '',
       descripcionPedido: ''
     },
-    idLocalAbastecimiento:{
+    idLocalAbastecimiento: {
       _id: '',
       localAbastecimiento: ''
     },
@@ -54,6 +54,10 @@ export class FolioService {
     return this.http.get<Folio[]>(this.URL_API + this.modelo)
   }
 
+  obtenerFoliosActuales() {
+    return this.http.get<Folio[]>(this.URL_API + this.modelo + '/obtenerFolios')
+  }
+
   crearFolio(folio: Folio) {
     return this.http.post(this.URL_API + this.modelo, folio)
   }
@@ -65,7 +69,7 @@ export class FolioService {
   borrarFolio(_id: String) {
     return this.http.delete(`${this.URL_API}${this.modelo}/${_id}`)
   }
-  cargarFolios(dataString:string){
-    return this.http.post(this.URL_API + this.modelo +'/cargarFolios', JSON.parse(dataString))
+  cargarFolios(dataString: string) {
+    return this.http.post(this.URL_API + this.modelo + '/cargarFolios', JSON.parse(dataString))
   }
 }
