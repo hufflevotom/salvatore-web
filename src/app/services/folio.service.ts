@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Folio } from '../models/Folio';
 
@@ -6,7 +7,7 @@ import { Folio } from '../models/Folio';
   providedIn: 'root'
 })
 export class FolioService {
-  URL_API = 'https://salvatore-backend.herokuapp.com/v1'
+  URL_API = environment.URL_API
   modelo = '/folio'
   package = new EventEmitter<Folio>();
   folioSeleccionado: Folio = {

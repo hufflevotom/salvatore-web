@@ -1,1 +1,57 @@
-<p>habilitar-vehiculos works!</p>
+<div class="tahmkench">
+    <div class="contenedor0">
+        <div class="contenido0">
+            <div class="tarjeta">
+                <h3>Paso 3: Habilitar Vehiculos</h3>
+                <h5>A continuación se deben asignar los vehículos y repartidores para cada ruta.<br>Solo se muestran los vehiculos con el estado “Libre”</h5>
+                <div class="contenedor">
+                    <div class="blueblob">
+                        <img class="animacion" src="http://drive.google.com/uc?export=view&id=1hbJQ3QLhYBWwHOSsgUzodws7zQQ-DrFD" alt="Animacion para registro de folios">
+                    </div>
+                    <div class="contenido">
+                        <div class="tablehead">
+                            <h5 style="width:45px">Ruta</h5>
+                            <h5 style="width:160px">Placa</h5>
+                            <h5 style="width:160px">DNI</h5>
+                        </div>
+                        <form #form="ngForm" (ngSubmit)="print(form)">
+                            <div class="tablecontent" *ngFor="let ruta of rutas;let i = index">
+                                <div class="ruta">
+                                    # {{ruta}}
+                                    <input type="hidden" name="ruta" [(ngModel)]="modelos[i].ruta">
+                                </div>
+                                <div>
+                                    <select name="idVehiculo" [(ngModel)]="modelos[i].idVehiculo" #idVehiculo="ngModel" required>
+                                            <option value="vehiculo" selected hidden disabled>Seleccione la placa</option>
+                                            <option [value]="element._id" *ngFor="let element of vehiculoService.vehiculos">
+                                                {{element.placa}}
+                                            </option>
+                                        </select>
+                                </div>
+                                <div>
+                                    <select name="idUsuario" [(ngModel)]="modelos[i].idUsuario" #idUsuario="ngModel" required>
+                                            <option value="usuario" selected>Seleccione el dni</option>
+                                            <option [value]="element._id" *ngFor="let element of usuarioService.usuarios">
+                                                {{element.dni}}
+                                            </option>
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="opciones">
+                                <button class="next" type="submit">Registrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader" *ngIf="loader">
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>

@@ -8,13 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class InicioComponent implements OnInit {
   title: string = 'Inicio'
   folio?:Object
-  objeto = {
-    tipo: 'usuario',
-    data: {
-      dni: '73869994',
-      nombre: 'Bruno'
-    }
-  }
   constructor() { 
   }
 

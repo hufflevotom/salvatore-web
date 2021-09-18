@@ -1,9 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Folio } from 'src/app/models/Folio';
-import { Usuario } from 'src/app/models/Usuario';
-import { Vehiculo } from 'src/app/models/Vehiculo';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { FolioService } from 'src/app/services/folio.service';
@@ -14,10 +11,6 @@ import { FolioService } from 'src/app/services/folio.service';
   styleUrls: ['./right-bar.component.css']
 })
 export class RightBarComponent implements OnInit {
-  @Input() objeto = {
-    tipo: '',
-    data: {}
-  };
   estado: string = 'block';
   estadoUsuario: string = 'none';
   valoresUsuario: string = 'none';
@@ -28,9 +21,6 @@ export class RightBarComponent implements OnInit {
   estadoFolio: string = 'none';
   valoresFolio: string = 'none';
   formFolio: string = 'none';
-  @Input() usuario?: Usuario;
-  @Input() vehiculo?: Vehiculo;
-  @Input() folio?: Folio;
   data?: Object = {};
   dniStorage: string;
   constructor(
@@ -56,7 +46,6 @@ export class RightBarComponent implements OnInit {
         this.estadoFolio = 'none';
         this.valoresFolio = 'none';
         this.formFolio = 'none';
-        console.log(this.data);
       } else {
         this.estadoUsuario = 'none';
         this.estadoVehiculo = 'block';
@@ -83,7 +72,6 @@ export class RightBarComponent implements OnInit {
         this.estadoFolio = 'none';
         this.valoresFolio = 'none';
         this.formFolio = 'none';
-        console.log(this.data);
       } else {
         this.estadoUsuario = 'block';
         this.estadoVehiculo = 'none';
@@ -110,7 +98,6 @@ export class RightBarComponent implements OnInit {
         this.estadoFolio = 'block';
         this.valoresFolio = 'block';
         this.formFolio = 'none';
-        console.log(this.data,'asdgas');
       } else {
         this.estadoUsuario = 'none';
         this.estadoVehiculo = 'none';

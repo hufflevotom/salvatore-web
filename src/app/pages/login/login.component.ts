@@ -10,7 +10,10 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  mensajeRespuesta: string = '';
+  mensajeRespuesta = {
+    type:"",
+    message:""
+  };
 
   constructor(public usuarioService: UsuarioService, private router: Router) { }
 

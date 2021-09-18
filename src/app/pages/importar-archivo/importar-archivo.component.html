@@ -1,4 +1,25 @@
-<form #form="ngForm" (submit)="importarArchivo()">
-    <input type="file" name="archivo" (change)="onFileCharge($event)" [(ngModel)]="archivo" />
-    <button type="submit" [disabled]="!archivo">Cargar</button>
-</form>
+<div class="contenedor">
+    <div class="blueblob">
+        <img class="animacion" src="http://drive.google.com/uc?export=view&id=1tL_URUWlWSk2eST0mNQ8JHI0_-BGCuJv" alt="Animacion para registro de folios">
+    </div>
+    <div class="contenido">
+        <div class="tarjeta">
+            <form #form="ngForm" (submit)="importarArchivo()">
+                <h3>Paso 1: Importar archivo</h3>
+                <h5>Para cargar los folios correctamente se debe subir el archivo de la plantilla excel actual en formato .xlsx</h5>
+                <input class="uploadfile-input" type="file" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" name="archivo" (change)="onFileCharge($event)" [(ngModel)]="archivo" />
+                <div class="botonImportar">
+                    <button class="uploadfile-btn" type="submit" [disabled]="!archivo">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="loader" *ngIf="loader">
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>

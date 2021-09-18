@@ -12,7 +12,6 @@ import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
 import { ImportarArchivoComponent } from './pages/importar-archivo/importar-archivo.component';
 import { ValidarFoliosComponent } from './pages/validar-folios/validar-folios.component';
 import { HabilitarVehiculosComponent } from './pages/habilitar-vehiculos/habilitar-vehiculos.component';
-import { SeleccionarRepartidoresComponent } from './pages/seleccionar-repartidores/seleccionar-repartidores.component';
 
 const routes: Routes = [
   {
@@ -63,11 +62,6 @@ const routes: Routes = [
   {
     path: 'habilitar-vehiculos',
     component: HabilitarVehiculosComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'seleccionar-repartidores',
-    component: SeleccionarRepartidoresComponent,
     canActivate: [AuthGuard]
   },
   {

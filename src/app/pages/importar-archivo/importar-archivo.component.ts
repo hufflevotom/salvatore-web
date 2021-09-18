@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FolioService } from 'src/app/services/folio.service';
+import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -8,16 +9,21 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./importar-archivo.component.css']
 })
 export class ImportarArchivoComponent implements OnInit {
-  public archivo : File | null = null;
+  public archivo: File | null = null;
   public dataString: string = "";
-
-  constructor(public folioService: FolioService) {
+  public loader: boolean = false;
+  public res = {
+    type: "",
+    message: ""
+  };
+  constructor(public folioService: FolioService, private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
   onFileCharge(ev: any): void {
+    this.loader = true;
     let workBook: XLSX.WorkBook;
     let jsonData;
     const reader = new FileReader();
@@ -31,14 +37,17 @@ export class ImportarArchivoComponent implements OnInit {
         return initial;
       }, {});
       this.dataString = JSON.stringify(jsonData);
+      this.loader = false;
     }
     reader.readAsBinaryString(file);
   }
 
   importarArchivo() {
+    this.loader = true;
     this.folioService.cargarFolios(this.dataString).subscribe(
       res => {
-        console.log(res)
+        this.router.navigate(['./validar-folios']);
+        this.loader = false;
       },
       err => console.log(err)
     )

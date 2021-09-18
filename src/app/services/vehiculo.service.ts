@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Vehiculo } from '../models/Vehiculo';
 
@@ -6,7 +7,7 @@ import { Vehiculo } from '../models/Vehiculo';
   providedIn: 'root'
 })
 export class VehiculoService {
-  URL_API = 'https://salvatore-backend.herokuapp.com/v1'
+  URL_API = environment.URL_API
   modelo = '/vehiculo'
   vehicle = new EventEmitter<Vehiculo>();
   vehiculoSeleccionado: Vehiculo = {

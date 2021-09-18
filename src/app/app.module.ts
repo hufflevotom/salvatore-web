@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
@@ -23,8 +23,8 @@ import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
 import { ImportarArchivoComponent } from './pages/importar-archivo/importar-archivo.component';
 import { ValidarFoliosComponent } from './pages/validar-folios/validar-folios.component';
 import { HabilitarVehiculosComponent } from './pages/habilitar-vehiculos/habilitar-vehiculos.component';
-import { SeleccionarRepartidoresComponent } from './pages/seleccionar-repartidores/seleccionar-repartidores.component';
 import { HeaderComponent } from './components/header/header.component';
+import { RespuestaComponent } from './components/respuesta/respuesta.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +41,12 @@ import { HeaderComponent } from './components/header/header.component';
     ImportarArchivoComponent,
     ValidarFoliosComponent,
     HabilitarVehiculosComponent,
-    SeleccionarRepartidoresComponent,
-    HeaderComponent
+    HeaderComponent,
+    RespuestaComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

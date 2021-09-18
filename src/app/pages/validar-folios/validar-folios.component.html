@@ -1,35 +1,72 @@
-<table mat-table [dataSource]="dataSource" matSort>
-    <!-- Folio Column -->
-    <ng-container matColumnDef="numeroFolio">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> # Folio </th>
-        <td mat-cell *matCellDef="let element"> {{element.numeroFolio}} </td>
-    </ng-container>
-    <!-- DNI Column -->
-    <ng-container matColumnDef="idDetalleCliente.dni">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
-        <td mat-cell *matCellDef="let element"> {{element.idDetalleCliente.dni}} </td>
-    </ng-container>
-    <!-- Telefono Column -->
-    <ng-container matColumnDef="idDetalleCliente.telefono">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
-        <td mat-cell *matCellDef="let element"> {{element.idDetalleCliente.telefono}} </td>
-    </ng-container>
-    <!-- Direccion Column -->
-    <ng-container matColumnDef="idDetalleCliente.direccion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Direccion </th>
-        <td mat-cell *matCellDef="let element"> {{element.idDetalleCliente.direccion}} </td>
-    </ng-container>
-    <!-- Entrega Column -->
-    <ng-container matColumnDef="idDetalleEntrega.fechaEntrega">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Entrega </th>
-        <td mat-cell *matCellDef="let element"> {{element.idDetalleEntrega.fechaEntrega.split('T',1)}} </td>
-    </ng-container>
-    <!-- Pedido Column -->
-    <ng-container matColumnDef="idDetallePedido.descripcionPedido">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pedido </th>
-        <td mat-cell *matCellDef="let element"> {{element.idDetallePedido.descripcionPedido}} </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
-</table>
-<mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+<div class="tahmkench">
+    <div class="contenedor">
+        <div class="contenido">
+            <div class="tarjeta">
+                <h3>Paso 2: Validar Folios</h3>
+                <h5>A continuación se muestran los folios ingresados para su reparto:</h5>
+                <table mat-table [dataSource]="dataSource" matSort>
+                    <!-- Folio Column -->
+                    <ng-container matColumnDef="numeroFolio">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> #Folio </th>
+                        <td mat-cell *matCellDef="let element"> {{element.numeroFolio}} </td>
+                    </ng-container>
+                    <!-- Ruta Column -->
+                    <ng-container matColumnDef="ruta">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> #Ruta </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ruta}} </td>
+                    </ng-container>
+                    <!-- DNI Column -->
+                    <ng-container matColumnDef="idDetalleCliente.dni">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idDetalleCliente.dni}} </td>
+                    </ng-container>
+                    <!-- Nombre Column -->
+                    <ng-container matColumnDef="idDetalleCliente.nombre">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idDetalleCliente.nombre}} </td>
+                    </ng-container>
+                    <!-- Telefono Column -->
+                    <ng-container matColumnDef="idDetalleCliente.telefono">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idDetalleCliente.telefono.replace('/',', ')}} </td>
+                    </ng-container>
+                    <!-- Direccion Column -->
+                    <ng-container matColumnDef="idDetalleCliente.direccion">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Direccion </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idDetalleCliente.direccion}} </td>
+                    </ng-container>
+                    <!-- Distrito Column -->
+                    <ng-container matColumnDef="idDetalleEntrega.idUbicacionEntrega.distrito">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Distrito </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idDetalleEntrega.idUbicacionEntrega.distrito}} </td>
+                    </ng-container>
+                    <!-- Pedido Column -->
+                    <ng-container matColumnDef="idDetallePedido.descripcionPedido">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Pedido </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idDetallePedido.descripcionPedido}} </td>
+                    </ng-container>
+                    <!-- Almacén Column -->
+                    <ng-container matColumnDef="idLocalAbastecimiento.localAbastecimiento">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Almacén </th>
+                        <td mat-cell *matCellDef="let element"> {{element.idLocalAbastecimiento.localAbastecimiento}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [class.demo-row-is-clicked]="clickedRows.has(row)">
+                    </tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[20]" showFirstLastButtons></mat-paginator>
+                <div class="opciones">
+                    <button class="next" (click)="conforme()">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader" *ngIf="loader">
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>

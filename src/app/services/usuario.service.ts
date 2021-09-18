@@ -1,12 +1,13 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../models/Usuario';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  URL_API = 'https://salvatore-backend.herokuapp.com/v1'
+  URL_API = environment.URL_API
   modelo = '/usuario'
   user = new EventEmitter<Usuario>();
   usuarioSeleccionado: Usuario = {
