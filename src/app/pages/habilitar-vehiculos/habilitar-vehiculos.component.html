@@ -31,7 +31,7 @@
                                 <div>
                                     <select name="idUsuario" [(ngModel)]="modelos[i].idUsuario" #idUsuario="ngModel" required>
                                             <option value="usuario" selected>Seleccione el dni</option>
-                                            <option [value]="element._id" *ngFor="let element of usuarioService.usuarios">
+                                            <option [value]="element._id" *ngFor="let element of usuarioService.repartidores">
                                                 {{element.dni}}
                                             </option>
                                         </select>

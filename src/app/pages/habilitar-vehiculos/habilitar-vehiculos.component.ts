@@ -12,10 +12,10 @@ import { VehiculoService } from 'src/app/services/vehiculo.service';
 })
 export class HabilitarVehiculosComponent implements OnInit {
   public loader: boolean = true;
-  respuesta : any = [];
+  respuesta: any = [];
   placas: [any] = [""];
   rutas!: string[]
-  modelos:Responsable[] = [];
+  modelos: Responsable[] = [];
   @ViewChild("ruta") ruta!: ElementRef;
   @ViewChild("placa") placa!: ElementRef;
   @ViewChild("dni") dni!: ElementRef;
@@ -29,7 +29,7 @@ export class HabilitarVehiculosComponent implements OnInit {
   ngOnInit(): void {
     this.getRutas();
     this.obtenerVehiculos();
-    this.obtenerUsuarios();
+    this.obtenerRepartidores();
   }
 
   getRutas() {
@@ -38,7 +38,7 @@ export class HabilitarVehiculosComponent implements OnInit {
         this.rutas = res;
         for (let i = 0; i < res.length; i++) {
           res[i];
-          const responsable = {ruta: res[i],idUsuario:"usuario",idVehiculo:"vehiculo"};
+          const responsable = { ruta: res[i], idUsuario: "usuario", idVehiculo: "vehiculo" };
           this.modelos.push(responsable);
         }
         this.loader = false;
@@ -61,10 +61,17 @@ export class HabilitarVehiculosComponent implements OnInit {
     )
   }
 
-  obtenerUsuarios() {
+  obtenerRepartidores() {
     this.usuarioService.obtenerUsuarios().subscribe(
       res => {
-        this.usuarioService.usuarios = res;
+        res.forEach(element => {
+          if (element.idTipoRol === '60bb0fad68bcb70590c9eccd') {
+            this.usuarioService.repartidores = [element];
+            console.log(this.usuarioService.repartidores);
+            
+          }
+        });
+
       },
       err => console.log(err)
     )

@@ -222,8 +222,6 @@ input.filtro {
     height: 50px;
     right: 5px;
     top: 20px;
-    background: var(--color-verde-60);
-    box-shadow: inset 10px 0px 0px var(--color-verde-100);
     border-radius: 10px;
 }
 
@@ -249,8 +247,7 @@ input.filtro {
     font-size: 14px;
     line-height: 16px;
     display: flex;
-    align-items: center;
-    color: var(--color-verde-100);
+    align-items: center;    
     flex: none;
     order: 1;
     flex-grow: 1;

@@ -23,6 +23,7 @@ export class UsuarioService {
     updatedAt: ''
   };
   usuarios!: Usuario[];
+  repartidores!: Usuario[];
   constructor(private http: HttpClient) { }
   ingresar(usuario: Usuario) {
     const header = new HttpHeaders({ 'Content-Type': 'application/json' });

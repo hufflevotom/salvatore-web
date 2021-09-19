@@ -22,20 +22,29 @@ export class LoginComponent implements OnInit {
 
   ingresar(form: NgForm) {
     if (form.invalid) {
-      console.log('Formulario inválido')
+      this.mensajeRespuesta = {
+        type: 'error',
+        message:'Formulario inválido'
+      };
     }
     this.usuarioService.ingresar(form.value).subscribe((res: any) => {
       if (res['type'] === 'success') {
         if (res['data'].idTipoRol === '60bb0f9768bcb70590c9eccc') {
-          const dniStorage = res['data'].dni
-          localStorage.setItem('dni', dniStorage)
+          // const dniStorage = res['data'].dni
+          localStorage.setItem('dni', res['data'].dni)
           this.router.navigateByUrl('/inicio')
-          console.log(dniStorage);
+          // console.log(dniStorage);
+        }else{
+          this.mensajeRespuesta = {
+            type: 'error',
+            message:'El usuario no tiene permisos suficientes'
+          };
         }
-      } else if (res['type'] === 'error') {
-        console.log(res)
-        this.mensajeRespuesta = res
       }
-    })
+    },
+    error => {
+      this.mensajeRespuesta = error.error;
+    }
+    );
   }
 }

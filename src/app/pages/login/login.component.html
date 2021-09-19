@@ -2,11 +2,13 @@
     <div class="logo">
         <img src="http://drive.google.com/uc?export=view&id=12CcnkXzSyRGiL7Z0-l4tGot-IWNCMMid" alt="Logo Operador Logistico CJ EIRL">
     </div>
-    <div class="tarjeta">
+    <div class="tarjeta" style="padding: 20px;">
         <div class="col-2">
             <form (ngSubmit)="ingresar(form)" #form="ngForm">
                 <h4 style="align-self: center;text-align: center;">Iniciar Sesion</h4>
+                <p>DNI:</p>
                 <input type="text" name="dni" [(ngModel)]="usuarioService.usuarioSeleccionado.dni" placeholder="D.N.I.">
+                <p>Contraseña:</p>
                 <input type="password" name="contrasena" [(ngModel)]="usuarioService.usuarioSeleccionado.contrasena" placeholder="Contraseña">
                 <button type="submit" class="btn-secondary">Ingresar</button>
             </form>
@@ -16,4 +18,4 @@
         </div>
     </div>
 </div>
-<app-respuesta></app-respuesta>
+<app-respuesta [mensajeRespuesta]="mensajeRespuesta"></app-respuesta>
