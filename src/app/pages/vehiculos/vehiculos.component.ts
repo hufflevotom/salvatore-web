@@ -18,15 +18,20 @@ export class VehiculosComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   clickedRows = new Set<Vehiculo>();
+  public loader: boolean = false;
+  public flag: boolean = false;
+
   constructor(public vehiculoService: VehiculoService) {
     this.dataSource = new MatTableDataSource<Vehiculo>(this.vehiculoService.vehiculos);
   }
 
   ngOnInit(): void {
+    this.loader = true;
     this.obtenerVehiculos();
   }
 
   ngAfterViewInit(): void {
+    this.loader = true;
     this.obtenerVehiculos();
 
   }
@@ -38,6 +43,8 @@ export class VehiculosComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource<Vehiculo>(this.vehiculoService.vehiculos);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.loader = false;
+        this.flag = true;
       },
       err => console.log(err)
     )

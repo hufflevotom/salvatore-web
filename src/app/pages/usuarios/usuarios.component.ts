@@ -18,15 +18,19 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   clickedRows = new Set<Usuario>();
+  public loader: boolean = false;
+  public flag: boolean = false;
   constructor(public usuarioService: UsuarioService) {
     this.dataSource = new MatTableDataSource<Usuario>(this.usuarioService.usuarios);
   }
 
   ngOnInit(): void {
+    this.loader = true;
     this.obtenerUsuarios();
   }
 
   ngAfterViewInit(): void {
+    this.loader = true;
     this.obtenerUsuarios();
 
   }
@@ -38,6 +42,8 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource<Usuario>(this.usuarioService.usuarios);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.loader = false;
+        this.flag = true;
       },
       err => console.log(err)
     )

@@ -18,15 +18,20 @@ export class FoliosComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   clickedRows = new Set<Folio>();
+  public loader: boolean = false;
+  public flag: boolean = false;
+
   constructor(public folioService: FolioService) {
     this.dataSource = new MatTableDataSource<Folio>(this.folioService.folios);
   }
 
   ngOnInit(): void {
+    this.loader = true;
     this.obtenerFolios();
   }
 
   ngAfterViewInit(): void {
+    this.loader = true;
     this.obtenerFolios();
 
   }
@@ -38,6 +43,8 @@ export class FoliosComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource<Folio>(this.folioService.folios);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.loader = false;
+        this.flag = true;
       },
       err => console.log(err)
     )

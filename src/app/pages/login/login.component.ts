@@ -30,10 +30,8 @@ export class LoginComponent implements OnInit {
     this.usuarioService.ingresar(form.value).subscribe((res: any) => {
       if (res['type'] === 'success') {
         if (res['data'].idTipoRol === '60bb0f9768bcb70590c9eccc') {
-          // const dniStorage = res['data'].dni
           localStorage.setItem('dni', res['data'].dni)
           this.router.navigateByUrl('/inicio')
-          // console.log(dniStorage);
         }else{
           this.mensajeRespuesta = {
             type: 'error',
