@@ -55,14 +55,12 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editarFolio(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
             </table>
-            <mat-paginator 
+            <mat-paginator             
             showFirstLastButtons
             [length]="length"
             [pageSize]="pageSize"
             [pageSizeOptions]="pageSizeOptions"
-            aria-label="Select page"
-            >
-        </mat-paginator>
+            aria-label="Select page"></mat-paginator>
         </div>
         <div class="loaderData" *ngIf="loader">
             <div class="lds-ellipsis">

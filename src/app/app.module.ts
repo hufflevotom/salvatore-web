@@ -29,6 +29,7 @@ import { RespuestaComponent } from './components/respuesta/respuesta.component';
 import { SocketIoModule } from 'ngx-socket-io';
 import { CookieService } from 'ngx-cookie-service';
 import { SocketProviderConnect } from './services/web-socket.service';
+
 @NgModule({
   declarations: [
     AppComponent,
