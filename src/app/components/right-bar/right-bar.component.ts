@@ -23,6 +23,11 @@ export class RightBarComponent implements OnInit {
   formFolio: string = 'none';
   data?: Object = {};
   dniStorage: string;
+  mensajeRespuesta = {
+    type: "",
+    message: ""
+  };
+
   constructor(
     public usuarioService: UsuarioService,
     public vehiculoService: VehiculoService,
@@ -147,7 +152,9 @@ export class RightBarComponent implements OnInit {
           this.router.navigate(['/vehiculos']);
         });
       },
-      err => console.log(err)
+      error => {
+          this.mensajeRespuesta = error.error;
+        }
     )
   }
 
@@ -159,7 +166,9 @@ export class RightBarComponent implements OnInit {
           this.router.navigate(['/usuarios']);
         });
       },
-      err => console.log(err)
+      error => {
+          this.mensajeRespuesta = error.error;
+        }
     )
   }
 
@@ -171,7 +180,9 @@ export class RightBarComponent implements OnInit {
           this.router.navigate(['/folios']);
         });
       },
-      err => console.log(err)
+      error => {
+          this.mensajeRespuesta = error.error;
+        }
     )
   }
 
@@ -179,12 +190,21 @@ export class RightBarComponent implements OnInit {
     console.log(form.value);
     if (form.value._id) {
       this.vehiculoService.actualizarVehiculo(form.value).subscribe(
-        res => {
-          console.log(res)
-          form.reset();
-          this.obtenerVehiculos();
+        (res: any) => {
+          console.log(res);
+          if (res['type'] === 'success') {
+            console.log(res);
+            form.reset();
+            this.obtenerVehiculos();
+            this.mensajeRespuesta = {
+              type: res.type,
+              message: res.message,
+            };
+          }
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     } else {
       this.vehiculoService.crearVehiculo(form.value).subscribe(
@@ -193,7 +213,9 @@ export class RightBarComponent implements OnInit {
           form.reset();
           console.log(res)
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     }
     this.estadoVacio();
@@ -207,7 +229,9 @@ export class RightBarComponent implements OnInit {
           form.reset();
           this.obtenerUsuarios();
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     } else {
       this.usuarioService.crearUsuario(form.value).subscribe(
@@ -216,7 +240,9 @@ export class RightBarComponent implements OnInit {
           form.reset();
           console.log(res)
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     }
     this.estadoVacio();
@@ -230,7 +256,9 @@ export class RightBarComponent implements OnInit {
           form.reset();
           this.obtenerFolios();
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     } else {
       this.folioService.crearFolio(form.value).subscribe(
@@ -239,7 +267,9 @@ export class RightBarComponent implements OnInit {
           form.reset();
           console.log(res)
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     }
     this.estadoVacio();
@@ -253,7 +283,9 @@ export class RightBarComponent implements OnInit {
           console.log(res)
           this.estadoVacio();
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     } else {
       console.log(false)
@@ -268,7 +300,9 @@ export class RightBarComponent implements OnInit {
           console.log(res)
           this.estadoVacio();
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     } else {
       console.log(false)
@@ -283,7 +317,9 @@ export class RightBarComponent implements OnInit {
           console.log(res)
           this.estadoVacio();
         },
-        err => console.log(err)
+        error => {
+          this.mensajeRespuesta = error.error;
+        }
       )
     } else {
       console.log(false)

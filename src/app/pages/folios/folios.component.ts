@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FolioService } from '../../services/folio.service';
@@ -20,6 +20,12 @@ export class FoliosComponent implements OnInit, AfterViewInit {
   clickedRows = new Set<Folio>();
   public loader: boolean = false;
   public flag: boolean = false;
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 50];
+
+  // pageEvent: PageEvent;
+
 
   constructor(public folioService: FolioService) {
     this.dataSource = new MatTableDataSource<Folio>(this.folioService.folios);
@@ -40,7 +46,7 @@ export class FoliosComponent implements OnInit, AfterViewInit {
     this.folioService.obtenerFolios().subscribe(
       res => {
         this.folioService.folios = res;
-        this.dataSource = new MatTableDataSource<Folio>(this.folioService.folios);
+        this.dataSource = new MatTableDataSource<Folio>(this.folioService.folios.docs);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.loader = false;

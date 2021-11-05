@@ -153,7 +153,7 @@
                 <h5 class="campo">Modelo</h5>
                 <input type="text" name="modelo" placeholder="Modelo" [(ngModel)]="vehiculoService.vehiculoSeleccionado.modelo">
                 <h5 class="campo">Fecha de fabricacion</h5>
-                <input type="datetime-local" name="fechaFabricacion" placeholder="Fecha de fabricacion" [(ngModel)]="vehiculoService.vehiculoSeleccionado.fechaFabricacion">
+                <input type="date" name="fechaFabricacion" placeholder="Fecha de fabricacion" [(ngModel)]="vehiculoService.vehiculoSeleccionado.fechaFabricacion">
                 <h5 class="campo">Estado</h5>
                 <select name="idEstadoVehiculo" placeholder="Estado" [(ngModel)]="vehiculoService.vehiculoSeleccionado.idEstadoVehiculo">
                     <option
@@ -167,9 +167,9 @@
                         value="60beee4c030b61001519db53">Mantenimiento</option>
                 </select>
                 <h5 class="campo">Fecha de vencimiento de SOAT</h5>
-                <input type="datetime-local" name="vencimientoSoat" placeholder="Fecha de vencimiento de SOAT" [(ngModel)]="vehiculoService.vehiculoSeleccionado.vencimientoSoat">
+                <input type="date" name="vencimientoSoat" placeholder="Fecha de vencimiento de SOAT" [(ngModel)]="vehiculoService.vehiculoSeleccionado.vencimientoSoat">
                 <h5 class="campo">Fecha de vencimiento de revision técnica</h5>
-                <input type="datetime-local" name="vencimientoRevision" placeholder="Fecha de vencimiento de revision técnica" [(ngModel)]="vehiculoService.vehiculoSeleccionado.vencimientoRevision">
+                <input type="date" name="vencimientoRevision" placeholder="Fecha de vencimiento de revision técnica" [(ngModel)]="vehiculoService.vehiculoSeleccionado.vencimientoRevision">
                 <button class="btn-primary">Guardar</button>
             </form>
         </div>
@@ -240,3 +240,4 @@
         </div>
     </div>
 </div>
+<app-respuesta [mensajeRespuesta]="mensajeRespuesta"></app-respuesta>

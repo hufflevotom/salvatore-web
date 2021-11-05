@@ -48,7 +48,7 @@ export class FolioService {
     createdAt: '',
     updatedAt: ''
   };
-  folios!: Folio[];
+  folios!: any;
   constructor(private http: HttpClient) { }
 
   obtenerFolios() {

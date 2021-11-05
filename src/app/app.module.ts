@@ -26,6 +26,9 @@ import { HabilitarVehiculosComponent } from './pages/habilitar-vehiculos/habilit
 import { HeaderComponent } from './components/header/header.component';
 import { RespuestaComponent } from './components/respuesta/respuesta.component';
 
+import { SocketIoModule } from 'ngx-socket-io';
+import { CookieService } from 'ngx-cookie-service';
+import { SocketProviderConnect } from './services/web-socket.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,9 +58,10 @@ import { RespuestaComponent } from './components/respuesta/respuesta.component';
     MatTableModule,
     MatSortModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SocketIoModule
   ],
-  providers: [],
+  providers: [SocketProviderConnect, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
