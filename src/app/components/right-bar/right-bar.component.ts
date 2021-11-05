@@ -153,8 +153,8 @@ export class RightBarComponent implements OnInit {
         });
       },
       error => {
-          this.mensajeRespuesta = error.error;
-        }
+        this.mensajeRespuesta = error.error;
+      }
     )
   }
 
@@ -167,8 +167,8 @@ export class RightBarComponent implements OnInit {
         });
       },
       error => {
-          this.mensajeRespuesta = error.error;
-        }
+        this.mensajeRespuesta = error.error;
+      }
     )
   }
 
@@ -181,8 +181,8 @@ export class RightBarComponent implements OnInit {
         });
       },
       error => {
-          this.mensajeRespuesta = error.error;
-        }
+        this.mensajeRespuesta = error.error;
+      }
     )
   }
 
