@@ -14,13 +14,13 @@
     flex-direction: row;
     width: 60.5%;
     align-self: center;
-    padding: 0 0 0 20px;
+    padding: 0;
 }
 
 .col-2 {
     display: flex;
     align-items: center;
-    padding-left: 40px;
+    padding-left: 0px;
     padding-right: 40px;
 }
 
