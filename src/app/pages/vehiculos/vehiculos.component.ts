@@ -13,7 +13,7 @@ import { Vehiculo } from 'src/app/models/Vehiculo';
 export class VehiculosComponent implements OnInit, AfterViewInit {
   title: string = 'Vehículos';
   vehiculo = this.vehiculoService.vehiculoSeleccionado;
-  displayedColumns: string[] = ['placa','marca','color','vencimientoSoat','vencimientoRevision','idEstadoVehiculo'];
+  displayedColumns: string[] = ['placa', 'marca', 'color', 'vencimientoSoat', 'vencimientoRevision', 'idEstadoVehiculo'];
   dataSource: MatTableDataSource<Vehiculo>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -61,7 +61,20 @@ export class VehiculosComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+    var filterValue = (event.target as HTMLInputElement).value;
+    if (filterValue == "Lib") {
+      filterValue = "60beee42030b61001519db52";
+    } else if (filterValue == "Libre") {
+      filterValue = "60beee42030b61001519db52";
+    } else if (filterValue == "En ") {
+      filterValue = "60beee1f030b61001519db51";
+    } else if (filterValue == "En uso") {
+      filterValue = "60beee1f030b61001519db51";
+    } else if (filterValue == "Mante") {
+      filterValue = "60beee4c030b61001519db53";
+    } else if (filterValue == "Mantenimiento") {
+      filterValue = "60beee4c030b61001519db53";
+    }
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 

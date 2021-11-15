@@ -60,7 +60,16 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+    var filterValue = (event.target as HTMLInputElement).value;
+    if (filterValue == "Admin") {
+      filterValue = "60bb0f9768bcb70590c9eccc";
+    } else if (filterValue == "Administrador") {
+      filterValue = "60bb0f9768bcb70590c9eccc";
+    } else if (filterValue == "Repa") {
+      filterValue = "60bb0fad68bcb70590c9eccd";
+    } else if (filterValue == "Repartidor") {
+      filterValue = "60bb0fad68bcb70590c9eccd";
+    }
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
