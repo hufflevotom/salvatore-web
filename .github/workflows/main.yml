@@ -19,7 +19,7 @@ jobs:
        run: npm install
 
      - name: Build static file
-       run: ng build
+       run: npm run build
 
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
