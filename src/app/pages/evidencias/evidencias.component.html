@@ -1,8 +1,142 @@
 <app-left-bar></app-left-bar>
 <div class="contenidoPagina">
-    <app-header [page]="title"></app-header>
-    <div class="tarjeta">
-        <p>evidencias works!</p>
+  <app-header [page]="title"></app-header>
+  <div class="tarjeta">
+    <div class="header-tarjeta">
+      <h5>Detalle de evidencias</h5>
     </div>
+    <form #busquedaForm="ngForm" (ngSubmit)="buscar(busquedaForm)" style="display:flex;flex-direction:row;gap:30px">
+      <input
+        type="text"
+        name="folio"
+        placeholder="Número de folio"
+        style="width:50%"
+      />
+      <input
+        type="text"
+        name="dni"
+        placeholder="Doc. Identidad"
+        style="width:25%"
+      />
+      <input
+        type="text"
+        name="placa"
+        placeholder="Placa"
+        style="width:25%"
+      />
+      <input
+        type="date"
+        name="fechaInicio"
+        placeholder="29/05/2021"
+        style="width:20%"
+      />
+      <input
+        type="text"
+        name="ruta"
+        placeholder="Ruta"
+        style="width:20%"
+      />
+      <!-- <select name="estado" placeholder="Estado" [(ngModel)]="usuarioService.usuarioSeleccionado.idTipoRol">
+                    <option ng-selected="usuarioService.usuarioSeleccionado.idTipoRol === '60bb0f9768bcb70590c9eccc'"
+                        value="60bb0f9768bcb70590c9eccc">Administrador</option>
+                    <option ng-selected="usuarioService.usuarioSeleccionado.idTipoRol === '60bb0fad68bcb70590c9eccd'"
+                        value="60bb0fad68bcb70590c9eccd">Repartidor</option>
+                </select> -->
+      <button class="btn-secondary" style="width:20%; margin-top:0">Buscar</button>
+    </form>
+  </div>
+  <div class="tarjeta mat-elevation-z8">
+    <div class="header-tarjeta">
+      <h5>Detalle de evidencias</h5>
+      <div class="filtro-tarjeta">
+        <h5 style="padding-right: 5px">Filtro:</h5>
+        <mat-form-field>
+          <input
+            class="filtro"
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder=" "
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div *ngIf="flag">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Folio Column -->
+        <ng-container matColumnDef="numeroFolio">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header># Folio</th>
+          <td mat-cell *matCellDef="let element">{{ element.numeroFolio }}</td>
+        </ng-container>
+        <!-- DNI Column -->
+        <ng-container matColumnDef="idDetalleCliente.dni">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Doc. Identidad
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idDetalleCliente.dni }}
+          </td>
+        </ng-container>
+        <!-- Telefono Column -->
+        <ng-container matColumnDef="idDetalleCliente.telefono">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Placa</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idDetalleCliente.telefono.replace("/", ", ") }}
+          </td>
+        </ng-container>
+        <!-- Direccion Column -->
+        <ng-container matColumnDef="idDetalleCliente.direccion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ruta</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idDetalleCliente.direccion }}
+          </td>
+        </ng-container>
+        <!-- Entrega Column -->
+        <ng-container matColumnDef="idDetalleEntrega.fechaEntrega">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idDetalleEntrega.fechaEntrega.split("T", 1) }}
+          </td>
+        </ng-container>
+        <!-- Pedido Column -->
+        <ng-container matColumnDef="idDetallePedido.descripcionPedido">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idDetallePedido.descripcionPedido }}
+          </td>
+        </ng-container>
+        <!-- Estado Column -->
+        <!-- <ng-container matColumnDef="idEstadoFolio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                <td mat-cell *matCellDsef="let element">
+                    <div *ngIf="element.idEstadoFolio==='60beee1f030b61001519db51'">En uso</div>
+                    <div *ngIf="element.idEstadoFolio==='60beee42030b61001519db52'">Libre</div>
+                    <div *ngIf="element.idEstadoFolio==='60beee4c030b61001519db53'">Mantenimiento</div>
+                </td>
+            </ng-container> -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          (click)="editarEvidencia(row)"
+          [class.demo-row-is-clicked]="clickedRows.has(row)"
+        ></tr>
+      </table>
+      <mat-paginator
+        showFirstLastButtons
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        aria-label="Select page"
+      ></mat-paginator>
+    </div>
+    <div class="loaderData" *ngIf="loader">
+      <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
 </div>
 <app-right-bar></app-right-bar>
