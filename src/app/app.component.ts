@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
     this.titleService.setTitle(this.title);
     this.metaService.addTags([
       { name: 'cf-2fa-verify', content: 'fxME8BRBrLBx8QyVeaRgDYUH31Lcn7' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { charset: 'UTF-8' },
     ]);
   }
 }
